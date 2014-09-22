@@ -46,7 +46,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.businesses = responseDict["businesses"] as Array<NSDictionary>
             println("View Did Load Biz Count:\(self.businesses.count)")
             println("\(self.businesses)")
+            
             self.searchTableView.rowHeight = UITableViewAutomaticDimension
+//            self.searchTableView.rowHeight = 101
+
+            
             self.searchTableView.reloadData()
             
             
@@ -64,7 +68,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println("numberOfRows: \(self.businesses.count)")
         return self.businesses.count
+
 
     }
     
@@ -125,9 +131,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
         
     }
-    
-
-    
     
 
 }

@@ -11,12 +11,12 @@ import QuartzCore
 import CoreLocation
 
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate {
     var client: YelpClient!
     var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
-    var locationManager: CLLocationManager!
-    var location: CLLocation!
+//    var locationManager: CLLocationManager!
+//    var location: CLLocation!
     
     
     let yelpConsumerKey = "lrryv0uzk-ilfSBVWFuubA"
@@ -43,7 +43,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
-        locationManager = CLLocationManager()
+//        locationManager = CLLocationManager()
 
         
         
@@ -124,10 +124,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func requestBusinesses(sender:AnyObject){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        locationManager.startUpdatingLocation()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        
+//        locationManager.startUpdatingLocation()
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
@@ -156,7 +156,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         println("Search button pressed")
         self.requestBusinesses(self)
-        self.view.endEditing(true)
+//        self.view.endEditing(true)        
+        self.navSearchBar.endEditing(true)
+
     }
 
         // Allows search bar to search on empty strings
@@ -176,13 +178,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // dismisses keyboard when you click cancel
     func searchBarCancelButtonClicked(searchBar: UISearchBar){
         navSearchBar.text = ""
-        self.view.endEditing(true)
+        self.navSearchBar.endEditing(true)
     }
     
     // dismisses keyboard when you leave the page
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
-        self.view.endEditing(true)
+        self.navSearchBar.endEditing(true)
     }
     
 

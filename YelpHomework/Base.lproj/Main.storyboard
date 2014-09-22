@@ -20,6 +20,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cKy-dQ-y2p">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="102" id="5lg-YH-aAP" customClass="SearchTableViewCell" customModule="YelpHomework" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -107,6 +108,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="cKy-dQ-y2p" secondAttribute="trailing" constant="-16" id="092-cj-Nc5"/>
                             <constraint firstItem="cKy-dQ-y2p" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="SId-n3-oV7"/>
@@ -231,20 +233,30 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLV-sq-hjO" id="w6c-vr-GLt">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="Check.png" offImage="Unchecked.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tj7-Id-gDy">
-                                                    <rect key="frame" x="238" y="6" width="51" height="31"/>
-                                                </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilterLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nj-4d-XOf">
                                                     <rect key="frame" x="20" y="11" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-1t-E1S">
+                                                    <rect key="frame" x="251" y="8" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="hMu-0S-qjN"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Unchecked.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="Check.png"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="c7s-1t-E1S" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" id="2pw-3K-yqd"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5nj-4d-XOf" secondAttribute="bottom" constant="3" id="91m-am-Msr"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="c7s-1t-E1S" secondAttribute="bottom" constant="3" id="BQp-67-diH"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="leading" secondItem="w6c-vr-GLt" secondAttribute="leadingMargin" constant="12" id="IEd-AQ-KsT"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" constant="3" id="iqk-bq-8XE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c7s-1t-E1S" secondAttribute="trailing" constant="37" id="tyW-Zx-uUV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

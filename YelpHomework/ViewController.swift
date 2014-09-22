@@ -8,11 +8,16 @@
 
 import UIKit
 import QuartzCore
+import CoreLocation
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, CLLocationManagerDelegate {
     var client: YelpClient!
     var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
+    var locationManager: CLLocationManager!
+    var location: CLLocation!
+    
     
     let yelpConsumerKey = "lrryv0uzk-ilfSBVWFuubA"
     let yelpConsumerSecret = "9OJltaQhaUOCP4qu4ishFLqnHtQ"
@@ -33,32 +38,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
         self.navigationItem.titleView = self.navSearchBar
+        self.navSearchBar.delegate = self
         
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
-        client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-        
-        client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            
-            //            println(response.description)
-            var responseDict = response as NSDictionary
-            self.businesses = responseDict["businesses"] as Array<NSDictionary>
-            println("View Did Load Biz Count:\(self.businesses.count)")
-            println("\(self.businesses)")
-            
-            self.searchTableView.rowHeight = UITableViewAutomaticDimension
-//            self.searchTableView.rowHeight = 101
+        locationManager = CLLocationManager()
 
-            
-            self.searchTableView.reloadData()
-            
-            
-            
-            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                println(error)
-        }
         
+        
+        self.requestBusinesses(self)
         
     }
 
@@ -133,6 +122,72 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewWillAppear(animated: Bool) {
         self.searchTableView.rowHeight = UITableViewAutomaticDimension
     }
+    
+    func requestBusinesses(sender:AnyObject){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        locationManager.startUpdatingLocation()
+        
+        client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
+        
+        client.searchWithTerm(self.navSearchBar.text, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            //            println(response.description)
+            var responseDict = response as NSDictionary
+            self.businesses = responseDict["businesses"] as Array<NSDictionary>
+            println("View Did Load Biz Count:\(self.businesses.count)")
+            println("\(self.businesses)")
+            
+            self.searchTableView.rowHeight = UITableViewAutomaticDimension
+            //            self.searchTableView.rowHeight = 101
+            
+            
+            self.searchTableView.reloadData()
+            
+            
+            
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println(error)
+        }
+    }
+    
+    // Trigger search using searchBar text
+    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+        println("Search button pressed")
+        self.requestBusinesses(self)
+        self.view.endEditing(true)
+    }
 
+        // Allows search bar to search on empty strings
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        var navSearchBarTextField : UITextField = UITextField()
+        for subview in navSearchBar.subviews {
+            for secondLevelSubView in subview.subviews{
+                if secondLevelSubView.isKindOfClass(UITextField){
+                    navSearchBarTextField = secondLevelSubView as UITextField
+                    break
+                }
+            }
+        }
+        navSearchBarTextField.enablesReturnKeyAutomatically = false
+    }
+    
+    // dismisses keyboard when you click cancel
+    func searchBarCancelButtonClicked(searchBar: UISearchBar){
+        navSearchBar.text = ""
+        self.view.endEditing(true)
+    }
+    
+    // dismisses keyboard when you leave the page
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.view.endEditing(true)
+    }
+    
+
+
+
+    
 }
 

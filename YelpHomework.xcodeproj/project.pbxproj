@@ -17,6 +17,10 @@
 		BB50F28819CE5A2F00D0FEE8 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50F28719CE5A2F00D0FEE8 /* SearchTableViewCell.swift */; };
 		BB85EB0019CFA8CB00F57988 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85EAFF19CFA8CB00F57988 /* FilterViewController.swift */; };
 		BB85EB0219CFAFE300F57988 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85EB0119CFAFE300F57988 /* MapViewController.swift */; };
+		BB85EB0419CFC8D100F57988 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85EB0319CFC8D100F57988 /* SwitchTableViewCell.swift */; };
+		BB85EB0619CFC8DA00F57988 /* RadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB85EB0519CFC8DA00F57988 /* RadioTableViewCell.swift */; };
+		BB85EB0819CFCA1600F57988 /* Check.png in Resources */ = {isa = PBXBuildFile; fileRef = BB85EB0719CFCA1600F57988 /* Check.png */; };
+		BB85EB0A19CFCAAD00F57988 /* Unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = BB85EB0919CFCAAD00F57988 /* Unchecked.png */; };
 		FC5429DEE1A341E0AD2D2917 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11BD8FC23DFE47B2A40AD800 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +52,10 @@
 		BB50F28A19CE5B5B00D0FEE8 /* YelpHomework-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YelpHomework-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB85EAFF19CFA8CB00F57988 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		BB85EB0119CFAFE300F57988 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		BB85EB0319CFC8D100F57988 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		BB85EB0519CFC8DA00F57988 /* RadioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioTableViewCell.swift; sourceTree = "<group>"; };
+		BB85EB0719CFCA1600F57988 /* Check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Check.png; sourceTree = "<group>"; };
+		BB85EB0919CFCAAD00F57988 /* Unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unchecked.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +108,14 @@
 		BB50F26219CE58A500D0FEE8 /* YelpHomework */ = {
 			isa = PBXGroup;
 			children = (
+				BB85EB0919CFCAAD00F57988 /* Unchecked.png */,
+				BB85EB0719CFCA1600F57988 /* Check.png */,
 				BB50F28519CE5A1600D0FEE8 /* YelpClient.swift */,
 				BB50F26519CE58A500D0FEE8 /* AppDelegate.swift */,
 				BB50F26719CE58A500D0FEE8 /* ViewController.swift */,
 				BB50F26919CE58A500D0FEE8 /* Main.storyboard */,
+				BB85EB0319CFC8D100F57988 /* SwitchTableViewCell.swift */,
+				BB85EB0519CFC8DA00F57988 /* RadioTableViewCell.swift */,
 				BB85EB0119CFAFE300F57988 /* MapViewController.swift */,
 				BB85EAFF19CFA8CB00F57988 /* FilterViewController.swift */,
 				BB50F28719CE5A2F00D0FEE8 /* SearchTableViewCell.swift */,
@@ -224,7 +236,9 @@
 			files = (
 				BB50F26B19CE58A500D0FEE8 /* Main.storyboard in Resources */,
 				BB50F27019CE58A500D0FEE8 /* LaunchScreen.xib in Resources */,
+				BB85EB0A19CFCAAD00F57988 /* Unchecked.png in Resources */,
 				BB50F26D19CE58A500D0FEE8 /* Images.xcassets in Resources */,
+				BB85EB0819CFCA1600F57988 /* Check.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +291,10 @@
 			files = (
 				BB50F26819CE58A500D0FEE8 /* ViewController.swift in Sources */,
 				BB85EB0219CFAFE300F57988 /* MapViewController.swift in Sources */,
+				BB85EB0419CFC8D100F57988 /* SwitchTableViewCell.swift in Sources */,
 				BB50F28819CE5A2F00D0FEE8 /* SearchTableViewCell.swift in Sources */,
 				BB50F28619CE5A1600D0FEE8 /* YelpClient.swift in Sources */,
+				BB85EB0619CFC8DA00F57988 /* RadioTableViewCell.swift in Sources */,
 				BB50F26619CE58A500D0FEE8 /* AppDelegate.swift in Sources */,
 				BB85EB0019CFA8CB00F57988 /* FilterViewController.swift in Sources */,
 			);

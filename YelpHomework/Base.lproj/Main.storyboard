@@ -148,8 +148,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="oP0-Jh-RjH">
-                        <barButtonItem key="leftBarButtonItem" title="Filter" id="HyG-i3-eus"/>
-                        <barButtonItem key="rightBarButtonItem" title="List" id="Zo8-A3-fQJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="HyG-i3-eus">
+                            <connections>
+                                <segue destination="XeL-yy-Fve" kind="modal" id="Ddd-9b-p5r"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="List" id="Zo8-A3-fQJ">
+                            <connections>
+                                <action selector="listButtonPressed:" destination="oED-rd-68d" id="5wT-dD-uBy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MfJ-W9-yNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,13 +189,80 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tD7-yv-p9R">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwitchTableViewCell" id="tPZ-HO-JED" customClass="SwitchTableViewCell" customModule="YelpHomework" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPZ-HO-JED" id="ooF-Tv-8WB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcV-ym-suO">
+                                                    <rect key="frame" x="236" y="6" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="Hx3-Ez-QAn"/>
+                                                    </constraints>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilterLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-CI-CL3">
+                                                    <rect key="frame" x="20" y="11" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dJd-CI-CL3" firstAttribute="leading" secondItem="ooF-Tv-8WB" secondAttribute="leadingMargin" constant="12" id="1xM-4p-odw"/>
+                                                <constraint firstItem="dcV-ym-suO" firstAttribute="top" secondItem="ooF-Tv-8WB" secondAttribute="topMargin" constant="-2" id="UuX-j4-ZcA"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dcV-ym-suO" secondAttribute="bottom" constant="-2" id="bBC-Rb-rLW"/>
+                                                <constraint firstItem="dJd-CI-CL3" firstAttribute="top" secondItem="ooF-Tv-8WB" secondAttribute="topMargin" constant="3" id="hNk-f7-Lc2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dJd-CI-CL3" secondAttribute="bottom" constant="3" id="kUp-Jh-8Fp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dcV-ym-suO" secondAttribute="trailing" constant="27" id="l7J-TG-tAY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterLabel" destination="dJd-CI-CL3" id="iWT-IN-8Si"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioTableViewCell" id="cLV-sq-hjO" customClass="RadioTableViewCell" customModule="YelpHomework" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLV-sq-hjO" id="w6c-vr-GLt">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" onImage="Check.png" offImage="Unchecked.png" translatesAutoresizingMaskIntoConstraints="NO" id="Tj7-Id-gDy">
+                                                    <rect key="frame" x="238" y="6" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilterLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nj-4d-XOf">
+                                                    <rect key="frame" x="20" y="11" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5nj-4d-XOf" secondAttribute="bottom" constant="3" id="91m-am-Msr"/>
+                                                <constraint firstItem="5nj-4d-XOf" firstAttribute="leading" secondItem="w6c-vr-GLt" secondAttribute="leadingMargin" constant="12" id="IEd-AQ-KsT"/>
+                                                <constraint firstItem="5nj-4d-XOf" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" constant="3" id="iqk-bq-8XE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="filterLabel" destination="5nj-4d-XOf" id="gX5-gS-fim"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="filterTableView" destination="tD7-yv-p9R" id="zDM-1u-sb0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEj-aY-m1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="1003"/>
+            <point key="canvasLocation" x="704" y="1067"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="reB-cE-s8K">
@@ -208,9 +283,16 @@
             <point key="canvasLocation" x="172" y="362"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Check.png" width="24" height="24"/>
+        <image name="Unchecked.png" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="eRb-dy-TBP"/>
+    </inferredMetricsTieBreakers>
 </document>

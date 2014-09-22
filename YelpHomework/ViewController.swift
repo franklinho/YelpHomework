@@ -126,12 +126,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         
         
-        
-        
         return cell
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.searchTableView.rowHeight = UITableViewAutomaticDimension
+    }
 
 }
 

@@ -119,7 +119,7 @@
                     <navigationItem key="navigationItem" id="hb2-f7-An8">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="djL-ay-NTQ">
                             <connections>
-                                <segue destination="XeL-yy-Fve" kind="modal" id="eRb-dy-TBP"/>
+                                <segue destination="XeL-yy-Fve" kind="modal" identifier="showFilterSegue" id="eRb-dy-TBP"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Map" id="asb-2S-lxc">
@@ -201,11 +201,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tPZ-HO-JED" id="ooF-Tv-8WB">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcV-ym-suO">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dcV-ym-suO">
                                                     <rect key="frame" x="236" y="6" width="51" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="Hx3-Ez-QAn"/>
-                                                    </constraints>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FilterLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJd-CI-CL3">
                                                     <rect key="frame" x="20" y="11" width="80" height="21"/>
@@ -216,15 +213,15 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dJd-CI-CL3" firstAttribute="leading" secondItem="ooF-Tv-8WB" secondAttribute="leadingMargin" constant="12" id="1xM-4p-odw"/>
-                                                <constraint firstItem="dcV-ym-suO" firstAttribute="top" secondItem="ooF-Tv-8WB" secondAttribute="topMargin" constant="-2" id="UuX-j4-ZcA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="dcV-ym-suO" secondAttribute="bottom" constant="-2" id="bBC-Rb-rLW"/>
                                                 <constraint firstItem="dJd-CI-CL3" firstAttribute="top" secondItem="ooF-Tv-8WB" secondAttribute="topMargin" constant="3" id="hNk-f7-Lc2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dJd-CI-CL3" secondAttribute="bottom" constant="3" id="kUp-Jh-8Fp"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="dcV-ym-suO" secondAttribute="trailing" constant="27" id="l7J-TG-tAY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dcV-ym-suO" secondAttribute="trailing" constant="27" id="sQt-8c-G0g"/>
+                                                <constraint firstAttribute="centerY" secondItem="dcV-ym-suO" secondAttribute="centerY" id="wqc-c8-kal"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="filterLabel" destination="dJd-CI-CL3" id="iWT-IN-8Si"/>
+                                            <outlet property="filterSwitch" destination="dcV-ym-suO" id="WFQ-MO-85G"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RadioTableViewCell" id="cLV-sq-hjO" customClass="RadioTableViewCell" customModule="YelpHomework" customModuleProvider="target">
@@ -239,27 +236,24 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-1t-E1S">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-1t-E1S">
                                                     <rect key="frame" x="251" y="8" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="hMu-0S-qjN"/>
-                                                    </constraints>
                                                     <state key="normal" image="Unchecked.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="selected" image="Check.png"/>
+                                                    <state key="highlighted" image="Down.png"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="c7s-1t-E1S" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" id="2pw-3K-yqd"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5nj-4d-XOf" secondAttribute="bottom" constant="3" id="91m-am-Msr"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="c7s-1t-E1S" secondAttribute="bottom" constant="3" id="BQp-67-diH"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="leading" secondItem="w6c-vr-GLt" secondAttribute="leadingMargin" constant="12" id="IEd-AQ-KsT"/>
+                                                <constraint firstAttribute="centerY" secondItem="c7s-1t-E1S" secondAttribute="centerY" id="LH8-Ea-1Cd"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" constant="3" id="iqk-bq-8XE"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="c7s-1t-E1S" secondAttribute="trailing" constant="37" id="tyW-Zx-uUV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="filterButton" destination="c7s-1t-E1S" id="SVB-Wo-8bb"/>
                                             <outlet property="filterLabel" destination="5nj-4d-XOf" id="gX5-gS-fim"/>
                                         </connections>
                                     </tableViewCell>
@@ -268,7 +262,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="filterNavigationBar" destination="oHw-rZ-tZl" id="n7a-Wn-QUs"/>
                         <outlet property="filterTableView" destination="tD7-yv-p9R" id="zDM-1u-sb0"/>
                     </connections>
                 </viewController>
@@ -297,6 +293,7 @@
     </scenes>
     <resources>
         <image name="Check.png" width="24" height="24"/>
+        <image name="Down.png" width="24" height="24"/>
         <image name="Unchecked.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

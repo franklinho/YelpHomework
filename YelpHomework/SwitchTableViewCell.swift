@@ -10,6 +10,8 @@ import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var filterSwitch: UISwitch!
     @IBOutlet weak var filterLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +22,8 @@ class SwitchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        self.filterSwitch.userInteractionEnabled = false
+        
     }
 
 }

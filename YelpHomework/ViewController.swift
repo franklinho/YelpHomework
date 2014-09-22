@@ -15,6 +15,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var client: YelpClient!
     var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
+    
+    var latitude : Double = 37.77492
+    var longitude : Double = -122.41941
 //    var locationManager: CLLocationManager!
 //    var location: CLLocation!
     
@@ -23,6 +26,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     let yelpConsumerSecret = "9OJltaQhaUOCP4qu4ishFLqnHtQ"
     let yelpToken = "62lfsuEcNmLSjXYpjfOEPyHvC8kn_uhZ"
     let yelpTokenSecret = "B18rkkGe7Ds79wH29qQpSC5u-ZU"
+    
+    
+    var dealFilterEnabled = false
+    var distanceFilter = 0
+    var sortByFilter = 0
     
     @IBOutlet weak var searchTableView: UITableView!
     
@@ -35,6 +43,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+
+        
+        navigationController?.navigationBar.barTintColor = UIColor.redColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.backgroundColor = UIColor.redColor()
         
         
         self.navigationItem.titleView = self.navSearchBar
@@ -120,7 +135,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.searchTableView.rowHeight = UITableViewAutomaticDimension
+        self.searchTableView.reloadData()
     }
     
     func requestBusinesses(sender:AnyObject){
@@ -131,7 +146,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
-        client.searchWithTerm(self.navSearchBar.text, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        client.searchWithTerm(self.navSearchBar.text, latitude: self.latitude, longitude: self.longitude, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             
             //            println(response.description)
             var responseDict = response as NSDictionary
@@ -187,9 +202,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.navSearchBar.endEditing(true)
     }
     
-
-
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("\(segue.identifier)")
+        if (segue.identifier == "showFilterSegue") {
+            var filterViewController : FilterViewController = segue.destinationViewController as FilterViewController
+            filterViewController.dealFilterEnabled = self.dealFilterEnabled
+            filterViewController.distanceFilter = self.distanceFilter
+            filterViewController.sortByFilter = self.sortByFilter
+            var distanceFilter = 0
+        }
+    }
     
 }
 

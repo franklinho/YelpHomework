@@ -10,6 +10,8 @@ import UIKit
 
 class RadioTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var filterLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,6 +22,7 @@ class RadioTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        self.filterButton.userInteractionEnabled = false
     }
 
 }

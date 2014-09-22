@@ -29,7 +29,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var sectionsLabels = [   ["Offering a Deal"],
                             ["Auto", "0.3 miles", "1 miles", "5 miles", "20 miles"],
-                            ["Best Match", "Distance", "Rating", "Most Reviews"]
+                            ["Best Match", "Distance", "Rating"]
                         ]
     //Filter defaults
     var dealsFilterSelection = false

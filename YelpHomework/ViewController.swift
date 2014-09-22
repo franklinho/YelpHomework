@@ -11,15 +11,15 @@ import QuartzCore
 import CoreLocation
 
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, FilterViewControllerDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, FilterViewControllerDelegate, CLLocationManagerDelegate {
     var client: YelpClient!
     var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
     
     var latitude : Double = 37.77492
     var longitude : Double = -122.41941
-//    var locationManager: CLLocationManager!
-//    var location: CLLocation!
+    var locationManager: CLLocationManager!
+    var location: CLLocation!
     
     
     let yelpConsumerKey = "lrryv0uzk-ilfSBVWFuubA"
@@ -58,9 +58,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
-//        locationManager = CLLocationManager()
-
+        locationManager = CLLocationManager()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
         self.requestBusinesses(self)
         
@@ -83,6 +86,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var cell = tableView.dequeueReusableCellWithIdentifier("SearchTableViewCell") as SearchTableViewCell
         
         var business = self.businesses[indexPath.row]
+        
+        
         var indexString = String(indexPath.row+1) as String
         var businessName = business["name"] as String
         cell.nameLabel.text = indexString+". "+businessName
@@ -103,8 +108,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var location = business["location"] as NSDictionary
         
         var address = location["display_address"] as NSArray
+
         var addressString = address[0] as String
-        var neighborhoodString = address[1] as String
+        
+        var neighborhoodString = ""
+        
+        if address.count > 1 {
+            neighborhoodString = address[1] as String
+        }
+        
+        
         cell.addressLabel.text = addressString+", \n"+neighborhoodString as String
         
         var categories = business["categories"] as NSArray
@@ -139,14 +152,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func requestBusinesses(sender:AnyObject){
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        
-//        locationManager.startUpdatingLocation()
+        
         
         client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
         
-        client.searchWithTerm(self.navSearchBar.text, latitude: self.latitude, longitude: self.longitude, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        println("Current Coordinates: \(self.latitude),\(self.longitude)")
+        client.searchWithTerm(self.navSearchBar.text, deals:dealFilterEnabled, sortBy:sortByFilter, radius:distanceFilter, latitude: self.latitude, longitude: self.longitude, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             
             //            println(response.description)
             var responseDict = response as NSDictionary
@@ -218,6 +229,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.dealFilterEnabled = dealFilterEnabled
         self.distanceFilter = distanceFilter
         self.sortByFilter = sortByFilter
+        
+        self.requestBusinesses(self)
+        self.searchTableView.reloadData()
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        self.latitude = newLocation.coordinate.latitude
+        self.longitude = newLocation.coordinate.longitude
     }
     
 }

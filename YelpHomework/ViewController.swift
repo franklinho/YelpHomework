@@ -11,7 +11,7 @@ import QuartzCore
 import CoreLocation
 
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, FilterViewControllerDelegate {
     var client: YelpClient!
     var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
@@ -210,7 +210,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             filterViewController.distanceFilter = self.distanceFilter
             filterViewController.sortByFilter = self.sortByFilter
             var distanceFilter = 0
+            filterViewController.delegate = self
         }
+    }
+    
+    func didFinishUpdatingFilters(dealFilterEnabled: Bool, distanceFilter: Int, sortByFilter: Int) {
+        self.dealFilterEnabled = dealFilterEnabled
+        self.distanceFilter = distanceFilter
+        self.sortByFilter = sortByFilter
     }
     
 }

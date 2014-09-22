@@ -187,7 +187,11 @@
                                                 <action selector="dismissFilters:" destination="XeL-yy-Fve" id="lTi-Y5-qyV"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Search" id="GbA-ce-Xws"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Search" id="GbA-ce-Xws">
+                                            <connections>
+                                                <action selector="searchButtonPressed:" destination="XeL-yy-Fve" id="E0p-nN-pM2"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -236,23 +240,34 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-1t-E1S">
-                                                    <rect key="frame" x="251" y="8" width="24" height="24"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7s-1t-E1S">
+                                                    <rect key="frame" x="251" y="10" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="UEv-Zb-eG8"/>
+                                                        <constraint firstAttribute="height" constant="24" id="ZSf-9P-E42"/>
+                                                    </constraints>
                                                     <state key="normal" image="Unchecked.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="selected" image="Check.png"/>
                                                     <state key="highlighted" image="Down.png"/>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Down.png" translatesAutoresizingMaskIntoConstraints="NO" id="uOu-rG-sU2">
+                                                    <rect key="frame" x="251" y="9" width="24" height="24"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="5nj-4d-XOf" secondAttribute="bottom" constant="3" id="91m-am-Msr"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="leading" secondItem="w6c-vr-GLt" secondAttribute="leadingMargin" constant="12" id="IEd-AQ-KsT"/>
                                                 <constraint firstAttribute="centerY" secondItem="c7s-1t-E1S" secondAttribute="centerY" id="LH8-Ea-1Cd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uOu-rG-sU2" secondAttribute="trailing" constant="37" id="OVK-wE-vcm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c7s-1t-E1S" secondAttribute="trailing" constant="37" id="ar9-OK-oC0"/>
+                                                <constraint firstAttribute="centerY" secondItem="uOu-rG-sU2" secondAttribute="centerY" id="iGF-3T-QeA"/>
                                                 <constraint firstItem="5nj-4d-XOf" firstAttribute="top" secondItem="w6c-vr-GLt" secondAttribute="topMargin" constant="3" id="iqk-bq-8XE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="downImage" destination="uOu-rG-sU2" id="x8W-Hn-6CN"/>
                                             <outlet property="filterButton" destination="c7s-1t-E1S" id="SVB-Wo-8bb"/>
                                             <outlet property="filterLabel" destination="5nj-4d-XOf" id="gX5-gS-fim"/>
                                         </connections>

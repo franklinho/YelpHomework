@@ -11,6 +11,7 @@ import UIKit
 class RadioTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var downImage: UIImageView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var filterLabel: UILabel!
     override func awakeFromNib() {
@@ -23,6 +24,7 @@ class RadioTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         self.filterButton.userInteractionEnabled = false
+        
     }
 
 }

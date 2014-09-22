@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+
+
+
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var dealFilterEnabled = false
@@ -16,6 +20,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var isExpanded: [Int:Bool]! = [Int:Bool]()
     
+    var delegate: FilterViewControllerDelegate?
 
 
     var sectionNames = ["Deals","Distance","Sort By","Category"]
@@ -101,6 +106,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cellRow: Int!
         
+        
+        
         if ((indexPath.section) == 0){
             var cell = tableView.dequeueReusableCellWithIdentifier("SwitchTableViewCell") as SwitchTableViewCell
             cell.filterLabel.text = sectionsLabels[indexPath.section][indexPath.row] as String
@@ -110,10 +117,15 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if ((indexPath.section) == 1 ){
             var cell = tableView.dequeueReusableCellWithIdentifier("RadioTableViewCell") as RadioTableViewCell
             
+            
             if isExpanded[indexPath.section] == true {
                 cellRow = indexPath.row
+                cell.filterButton.hidden = false
+                cell.downImage.hidden = true
             } else {
                 cellRow = distanceFilter
+                cell.filterButton.hidden = true
+                cell.downImage.hidden = false
             }
             cell.filterLabel.text = sectionsLabels[indexPath.section][cellRow] as String
             if cellRow == distanceFilter{
@@ -127,8 +139,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             if isExpanded[indexPath.section] == true {
                 cellRow = indexPath.row
+                cell.filterButton.hidden = false
+                cell.downImage.hidden = true
             } else {
                 cellRow = sortByFilter
+                cell.filterButton.hidden = true
+                cell.downImage.hidden = false
             }
 
             cell.filterLabel.text = sectionsLabels[indexPath.section][cellRow] as String
@@ -186,6 +202,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 
+    @IBAction func searchButtonPressed(sender: AnyObject) {
+        self.delegate?.didFinishUpdatingFilters(self.dealFilterEnabled, distanceFilter: self.distanceFilter, sortByFilter: self.sortByFilter)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
 
 
 }
+
+protocol FilterViewControllerDelegate{
+    func didFinishUpdatingFilters(dealFilterEnabled:Bool,distanceFilter:Int, sortByFilter: Int)
+}
+

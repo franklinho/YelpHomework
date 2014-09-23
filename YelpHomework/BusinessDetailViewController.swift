@@ -16,7 +16,7 @@ class BusinessDetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     
-    @IBOutlet weak var hoursLabel: UILabel!
+
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
     override func viewDidLoad() {
@@ -24,8 +24,50 @@ class BusinessDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        // Load up display variables from business
+        
         var businessName = business["name"] as String
         self.nameLabel.text = businessName
+        
+        var ratingsImageURL = business["rating_img_url"] as String
+        self.reviewImage.setImageWithURL(NSURL(string: ratingsImageURL))
+        
+        var reviewCount = business["review_count"] as Int
+        
+        self.reviewsLabel.text = String(reviewCount)+" Reviews" as String
+        
+        var location = business["location"] as NSDictionary
+        
+        var address = location["display_address"] as NSArray
+        
+        var addressString = address[0] as String
+        
+        var neighborhoodString = ""
+        
+        if address.count > 1 {
+            neighborhoodString = address[1] as String
+        }
+        
+        
+        self.addressLabel.text = addressString+", \n"+neighborhoodString as String
+        
+        var categories = business["categories"] as NSArray
+        var categoryString : String = ""
+        
+        for var index = 0; index < categories.count; index++ {
+            var currentString = String(categories[index][0] as NSString)
+            if index==0{
+                categoryString = categoryString+currentString as String
+            } else {
+                categoryString = categoryString+", "+currentString as String
+            }
+        }
+        
+        
+        self.categoryLabel.text = categoryString
+        
+        
+
     }
 
     override func didReceiveMemoryWarning() {

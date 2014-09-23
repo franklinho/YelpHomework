@@ -31,18 +31,15 @@ class MapViewController: UIViewController {
         
         println("\(latitude),\(longitude)")
         
+        // Create camera position for Google Map View centered on user location
         var camera : GMSCameraPosition = GMSCameraPosition(target: CLLocationCoordinate2DMake(latitude, longitude), zoom: 11, bearing: CLLocationDirection.abs(0), viewingAngle: 0)
+        
+        // Create google Map View
         var mapView : GMSMapView = GMSMapView(frame: CGRectZero)
         mapView.camera = camera
         
         
-        
-//        var marker : GMSMarker = GMSMarker()
-//        marker.position = camera.target
-//        marker.snippet = "Hello World"
-//        marker.appearAnimation = kGMSMarkerAnimationPop
-//        marker.map = mapView;
-        
+        // Creates a marker on Google map for each business with appropriate location
         for var index = 0; index < businesses.count; ++index{
             var businessMarker : BusinessMarker = BusinessMarker()
             var business = self.businesses[index]
@@ -62,7 +59,7 @@ class MapViewController: UIViewController {
             
         }
         
-        
+        // Return Google Map View
         self.view = mapView
         
     }
@@ -83,7 +80,7 @@ class MapViewController: UIViewController {
     }
     */
     
-
+    // Returns to list view
     @IBAction func listButtonPressed(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }

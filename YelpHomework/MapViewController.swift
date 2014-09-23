@@ -8,8 +8,18 @@
 
 import UIKit
 
-class MapViewController: UIViewController {
+class BusinessMarker: GMSMarker {
+    var location :  NSDictionary!
     
+    var coordinate : NSDictionary!
+    var latitude : Double!
+    var longitude : Double!
+}
+
+class MapViewController: UIViewController {
+    var latitude : Double!
+    var longitude : Double!
+    var businesses: Array<NSDictionary> = []
     var navSearchBar: UISearchBar = UISearchBar()
     
     override func viewDidLoad() {
@@ -18,6 +28,43 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.navigationItem.titleView = self.navSearchBar
+        
+        println("\(latitude),\(longitude)")
+        
+        var camera : GMSCameraPosition = GMSCameraPosition(target: CLLocationCoordinate2DMake(latitude, longitude), zoom: 11, bearing: CLLocationDirection.abs(0), viewingAngle: 0)
+        var mapView : GMSMapView = GMSMapView(frame: CGRectZero)
+        mapView.camera = camera
+        
+        
+        
+//        var marker : GMSMarker = GMSMarker()
+//        marker.position = camera.target
+//        marker.snippet = "Hello World"
+//        marker.appearAnimation = kGMSMarkerAnimationPop
+//        marker.map = mapView;
+        
+        for var index = 0; index < businesses.count; ++index{
+            var businessMarker : BusinessMarker = BusinessMarker()
+            var business = self.businesses[index]
+
+            businessMarker.location = business["location"]  as NSDictionary
+            
+            if businessMarker.location["coordinate"] != nil {
+                businessMarker.coordinate = businessMarker.location["coordinate"]  as NSDictionary
+                businessMarker.latitude = businessMarker.coordinate["latitude"] as Double
+                businessMarker.longitude = businessMarker.coordinate["longitude"] as Double
+                businessMarker.snippet = business["name"] as String
+                businessMarker.position = CLLocationCoordinate2DMake(businessMarker.latitude, businessMarker.longitude)
+                businessMarker.map = mapView
+            }
+            
+            
+            
+        }
+        
+        
+        self.view = mapView
+        
     }
 
     override func didReceiveMemoryWarning() {

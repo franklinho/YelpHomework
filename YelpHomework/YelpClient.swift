@@ -30,7 +30,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         self.requestSerializer.saveAccessToken(token)
     }
     
-    func searchWithTerm(term: String, deals:Bool, sortBy:Int, radius:Int, latitude:Double, longitude:Double, success: (AFHTTPRequestOperation!, AnyObject!) -> Void, failure: (AFHTTPRequestOperation!, NSError!) -> Void) -> AFHTTPRequestOperation! {
+    func searchWithTerm(term: String, deals:Bool, sortBy:Int, radius:Int, latitude:Double, longitude:Double, offset: Int, success: (AFHTTPRequestOperation!, AnyObject!) -> Void, failure: (AFHTTPRequestOperation!, NSError!) -> Void) -> AFHTTPRequestOperation! {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         var latLongString = "\(latitude),\(longitude)"
         println("\(latLongString)")
@@ -59,13 +59,16 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             parameters["radius_filter"] = radiusValue
         }
         
+        if offset != 0 {
+            parameters["offset"] = String(offset) as String
+        }
+        
         
         
         
         
         return self.GET("search", parameters: parameters, success: success, failure: failure)
     }
-    
 
     
 }

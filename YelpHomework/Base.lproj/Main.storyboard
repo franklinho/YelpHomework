@@ -5,6 +5,73 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Business Detail View Controller-->
+        <scene sceneID="m7E-iA-CsJ">
+            <objects>
+                <viewController id="aWe-cD-IqH" customClass="BusinessDetailViewController" customModule="YelpHomework" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aSG-u5-kwG"/>
+                        <viewControllerLayoutGuide type="bottom" id="acq-Qm-vrZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B5d-Td-7jG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pqb-d9-aGU">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i7-UW-I9S">
+                                        <rect key="frame" x="25" y="13" width="245" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CategoryLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGH-JY-cQ8">
+                                        <rect key="frame" x="25" y="58" width="113" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qly-pM-nsB">
+                                        <rect key="frame" x="25" y="83" width="93" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ReviewsLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JM-st-42z">
+                                        <rect key="frame" x="121" y="36" width="106" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AddressLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psU-Ob-55V">
+                                        <rect key="frame" x="25" y="119" width="106" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vnG-JQ-wIZ">
+                                        <rect key="frame" x="25" y="36" width="88" height="21"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N2q-k2-o1o"/>
+                    <connections>
+                        <outlet property="addressLabel" destination="psU-Ob-55V" id="UNU-pS-NHs"/>
+                        <outlet property="categoryLabel" destination="nGH-JY-cQ8" id="Gu4-Gf-K5t"/>
+                        <outlet property="hoursLabel" destination="Qly-pM-nsB" id="2ju-SQ-DkF"/>
+                        <outlet property="nameLabel" destination="1i7-UW-I9S" id="eub-Yn-EVL"/>
+                        <outlet property="reviewImage" destination="vnG-JQ-wIZ" id="uRX-VU-20v"/>
+                        <outlet property="reviewsLabel" destination="2JM-st-42z" id="gmf-G6-xW3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgF-fk-g1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="704" y="-352"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -22,7 +89,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="102" id="5lg-YH-aAP" customClass="SearchTableViewCell" customModule="YelpHomework" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchTableViewCell" rowHeight="102" id="5lg-YH-aAP" customClass="SearchTableViewCell" customModule="YelpHomework" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5lg-YH-aAP" id="6Kh-Qx-8wj">
@@ -69,7 +136,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-9Z-Rw0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-9Z-Rw0">
                                                     <rect key="frame" x="263" y="12" width="57" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -102,7 +169,30 @@
                                             <outlet property="nameLabel" destination="iJq-69-63I" id="lez-VX-avO"/>
                                             <outlet property="ratingImage" destination="XUC-Iu-JOc" id="Huq-Fl-amJ"/>
                                             <outlet property="reviewsLabel" destination="TBh-xH-n06" id="WnR-zP-3ZT"/>
+                                            <segue destination="aWe-cD-IqH" kind="push" identifier="BusinessDetailSegue" id="KjY-Ws-YIj"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpinnerCell" rowHeight="77" id="u8f-Fn-lbG">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u8f-Fn-lbG" id="O0O-YQ-bu7">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gb1-zy-bIE">
+                                                    <rect key="frame" x="150" y="28" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="DJ6-ql-ucg"/>
+                                                        <constraint firstAttribute="height" constant="20" id="SFs-i2-01b"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gb1-zy-bIE" secondAttribute="bottom" constant="20" id="UPR-xr-tNl"/>
+                                                <constraint firstItem="Gb1-zy-bIE" firstAttribute="leading" secondItem="O0O-YQ-bu7" secondAttribute="leadingMargin" constant="142" id="X15-aR-zjc"/>
+                                                <constraint firstItem="Gb1-zy-bIE" firstAttribute="top" secondItem="O0O-YQ-bu7" secondAttribute="topMargin" constant="20" id="es5-Hf-SGC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Gb1-zy-bIE" secondAttribute="trailing" constant="142" id="sHk-zw-9X4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -124,7 +214,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Map" id="asb-2S-lxc">
                             <connections>
-                                <segue destination="oED-rd-68d" kind="push" id="xYH-Cu-62d"/>
+                                <segue destination="oED-rd-68d" kind="push" identifier="MapViewSegue" id="ziZ-at-1aw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

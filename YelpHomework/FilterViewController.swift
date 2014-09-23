@@ -37,6 +37,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var sortByFilterSelection = 0
     
     
+    
+    
     @IBOutlet weak var filterNavigationBar: UINavigationBar!
     
 
@@ -65,7 +67,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
 
         self.filterTableView.rowHeight = 60
+        
 
+
+        
         
         self.filterTableView.reloadData()
     }

@@ -13,7 +13,7 @@ import CoreLocation
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate, FilterViewControllerDelegate, CLLocationManagerDelegate {
     var client: YelpClient!
-    var businesses: Array<NSDictionary> = []
+    var businesses: NSMutableArray = []
     var navSearchBar: UISearchBar = UISearchBar()
     
     var latitude : Double = 37.77492
@@ -77,6 +77,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.searchTableView.addSubview(refreshControl)
         
         self.currentOffset = 0
+        self.businesses.removeAllObjects()
         self.requestBusinesses(self,offset: currentOffset)
         
     }
@@ -150,12 +151,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             }
             
-            if (business["distance"] != nil) {
-                var distanceString = business["distance"] as String
-                cell.distanceLabel.text = distanceString
-            } else {
-                cell.distanceLabel.text = ""
-            }
             
             cell.categoriesLabel.text = categoryString
             return cell
@@ -185,7 +180,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             //            println(response.description)
             var responseDict = response as NSDictionary
-            self.businesses = responseDict["businesses"] as Array<NSDictionary>
+            var businessesArray = responseDict["businesses"] as Array<NSDictionary>
+            self.businesses.addObjectsFromArray(businessesArray)
             println("View Did Load Biz Count:\(self.businesses.count)")
             println("\(self.businesses)")
             
@@ -206,6 +202,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func searchBarSearchButtonClicked(searchBar: UISearchBar){
         println("Search button pressed")
         self.currentOffset = 0
+        self.businesses.removeAllObjects()
         self.requestBusinesses(self,offset: currentOffset)
         
 //        self.view.endEditing(true)        
@@ -257,7 +254,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             var businessDetailController: BusinessDetailViewController = segue.destinationViewController as BusinessDetailViewController
             var businessIndex = searchTableView!.indexPathForSelectedRow()?.row
             var selectedBusiness = self.businesses[businessIndex!]
-            businessDetailController.business = selectedBusiness
+            businessDetailController.business = selectedBusiness as NSDictionary
         }
     }
     
@@ -267,6 +264,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.sortByFilter = sortByFilter
         
         self.currentOffset = 0
+        self.businesses.removeAllObjects()
         self.requestBusinesses(self, offset: currentOffset)
         self.searchTableView.reloadData()
     }
@@ -276,7 +274,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.longitude = newLocation.coordinate.longitude
     }
     
-
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        currentOffset += self.businesses.count
+        
+        
+        
+        var actualPosition :CGFloat = scrollView.contentOffset.y
+        var contentHeight : CGFloat = scrollView.contentSize.height - 550
+        
+        println("Actual Position: \(actualPosition), Content Height: \(contentHeight)")
+        if (actualPosition >= contentHeight) {
+            requestBusinesses(self, offset: currentOffset)
+            self.searchTableView.reloadData()
+        }
+        
+    }
     
     
 }

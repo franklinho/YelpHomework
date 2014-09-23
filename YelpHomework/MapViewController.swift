@@ -19,7 +19,7 @@ class BusinessMarker: GMSMarker {
 class MapViewController: UIViewController {
     var latitude : Double!
     var longitude : Double!
-    var businesses: Array<NSDictionary> = []
+    var businesses: NSMutableArray = []
     var navSearchBar: UISearchBar = UISearchBar()
     
     override func viewDidLoad() {

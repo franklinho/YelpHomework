@@ -136,12 +136,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-9Z-Rw0">
-                                                    <rect key="frame" x="263" y="12" width="57" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iJq-69-63I" firstAttribute="top" secondItem="6Kh-Qx-8wj" secondAttribute="topMargin" constant="2" id="6yi-k5-fB5"/>
@@ -155,9 +149,7 @@
                                                 <constraint firstItem="wZy-X7-AXj" firstAttribute="bottom" secondItem="6Kh-Qx-8wj" secondAttribute="bottomMargin" id="ZJ6-XU-Pg5"/>
                                                 <constraint firstItem="XUC-Iu-JOc" firstAttribute="top" secondItem="iJq-69-63I" secondAttribute="bottom" constant="4" id="fQq-gG-GWl"/>
                                                 <constraint firstItem="wZy-X7-AXj" firstAttribute="top" secondItem="Upl-LJ-CKJ" secondAttribute="bottom" constant="4" id="mHj-lu-7N4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="t5v-9Z-Rw0" secondAttribute="trailing" constant="-8" id="mta-7h-p6S"/>
                                                 <constraint firstItem="wZy-X7-AXj" firstAttribute="leading" secondItem="xL7-AD-GjS" secondAttribute="trailing" constant="7" id="osm-ah-lI4"/>
-                                                <constraint firstItem="t5v-9Z-Rw0" firstAttribute="top" secondItem="6Kh-Qx-8wj" secondAttribute="topMargin" constant="4" id="qJa-2E-q3s"/>
                                                 <constraint firstItem="TBh-xH-n06" firstAttribute="leading" secondItem="XUC-Iu-JOc" secondAttribute="trailing" constant="8" id="sgJ-nb-brh"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -165,7 +157,6 @@
                                             <outlet property="addressLabel" destination="Upl-LJ-CKJ" id="h9k-at-nq9"/>
                                             <outlet property="businessImage" destination="xL7-AD-GjS" id="phS-sh-7yt"/>
                                             <outlet property="categoriesLabel" destination="wZy-X7-AXj" id="oxD-Hz-DXR"/>
-                                            <outlet property="distanceLabel" destination="t5v-9Z-Rw0" id="aN4-iM-hD3"/>
                                             <outlet property="nameLabel" destination="iJq-69-63I" id="lez-VX-avO"/>
                                             <outlet property="ratingImage" destination="XUC-Iu-JOc" id="Huq-Fl-amJ"/>
                                             <outlet property="reviewsLabel" destination="TBh-xH-n06" id="WnR-zP-3ZT"/>

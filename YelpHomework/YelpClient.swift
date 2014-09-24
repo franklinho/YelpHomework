@@ -37,7 +37,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         var dealsValue = deals ? "true":"false"
         var sort = "\(sortBy)"
         
-        var parameters = ["term": term, "cll": latLongString, "location": "San Francisco", "deals_filter": dealsValue ]
+        var parameters = ["term": term, "cll": latLongString, "location": "San Francisco", "deals_filter": dealsValue, "sort": sort ]
         
         if radius != 0 {
             var radiusValue: String = ""

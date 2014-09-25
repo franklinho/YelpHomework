@@ -4,7 +4,7 @@ Yelp Homework For Codepath Week 2
 
 
 
-- Hours Required For Completion: 9
+- Hours Required For Completion: 13
 2. Stories
   * Search results page
     * :white_check_mark: Table rows should be dynamic height according to the content height

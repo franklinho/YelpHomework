@@ -42,7 +42,7 @@ class MapViewController: UIViewController {
         // Creates a marker on Google map for each business with appropriate location
         for var index = 0; index < businesses.count; ++index{
             var businessMarker : BusinessMarker = BusinessMarker()
-            var business = self.businesses[index]
+            var business = self.businesses[index] as NSDictionary
 
             businessMarker.location = business["location"]  as NSDictionary
             

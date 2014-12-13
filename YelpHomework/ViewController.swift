@@ -299,7 +299,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         } else if (segue.identifier == "BusinessDetailSegue"){
             var businessDetailController: BusinessDetailViewController = segue.destinationViewController as BusinessDetailViewController
             var businessIndex = searchTableView!.indexPathForSelectedRow()?.row
-            var selectedBusiness = self.businesses[businessIndex!]
+            var selectedBusiness = self.businesses[businessIndex!] as NSDictionary
             businessDetailController.business = selectedBusiness as NSDictionary
         }
     }
@@ -324,7 +324,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     // Implements scrolling. Checks if current position of tableview is at the contentHeight position. If so, add businesses to tableView.
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        currentOffset += self.businesses.count
+        currentOffset = self.businesses.count
         
         var actualPosition :CGFloat = scrollView.contentOffset.y
         var contentHeight : CGFloat = scrollView.contentSize.height - 550
